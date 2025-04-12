@@ -5,21 +5,19 @@ from astrapy import DataAPIClient
 # ---------------------------
 # ✅ Configuration
 # ---------------------------
-# ASTRA_DB_API_ENDPOINT = "https://f03ceb8c-c930-4720-86e8-5a7eba99ae6a-us-east-2.apps.astra.datastax.com"
-# ASTRA_DB_TOKEN = "AstraCS:NTTSPYuEmZibWIsOOuLLwNtZ:383626916e320bf00fa8457b714b0db85ad63d49ed3f629dd7e4599dc9ed361f"  # <-- Paste your generated token here
 
 import os
 
 ASTRA_DB_API_ENDPOINT = "https://f03ceb8c-c930-4720-86e8-5a7eba99ae6a-us-east-2.apps.astra.datastax.com"
-ASTRA_DB_TOKEN = os.getenv("ASTRA_DB_TOKEN")  # <-- Read token from environment variable
+ASTRA_DB_APPLICATION_TOKEN = os.getenv("ASTRA_DB_APPLICATION_TOKEN")  # <-- Read token from environment variable
 
-if not ASTRA_DB_TOKEN:
-    raise ValueError("❌ ASTRA_DB_TOKEN environment variable is not set!")
+if not ASTRA_DB_APPLICATION_TOKEN:
+    raise ValueError("❌ ASTRA_DB_APPLICATION_TOKEN environment variable is not set!")
 
 # ---------------------------
 # ✅ Initialize Astra DB Client
 # ---------------------------
-client = DataAPIClient(ASTRA_DB_TOKEN)
+client = DataAPIClient(ASTRA_DB_APPLICATION_TOKEN)
 db = client.get_database_by_api_endpoint(ASTRA_DB_API_ENDPOINT)
 
 # ---------------------------
